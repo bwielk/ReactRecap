@@ -1,9 +1,10 @@
 import React from 'react';
+import './Person.css'
 
 const person = (props) => {
   const array = ["Alex", "Brian", "Cindy"]
   return (
-    <div>
+    <div className="Person">
           <hr/>
           <p>I am a person</p>
           <p onClick={props.click}>My name is {props.name}</p>
