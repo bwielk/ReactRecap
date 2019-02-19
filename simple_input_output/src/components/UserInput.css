@@ -1,0 +1,12 @@
+.UserInput {
+  background-color: ivory;
+  width: auto;
+  height:auto;
+  border: 1px solid brown;
+  padding: 5% 5% 5% 5%;
+  margin: 10px;
+}
+
+.inputField {
+  padding: 2% 0% 2% 0%;
+}
