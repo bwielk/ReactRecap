@@ -3,12 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import UserOutput from './components/UserOutput.js';
 import UserInput from './components/UserInput.js';
+import EnteredValueValidation from './components/EnteredValueValdidation.js';
 
 class App extends Component {
   state = {
     username: "TestUser122",
     age: 0,
-    email: ''
+    email: '',
+    enteredValue: "Sample value of the paragraph"
   };
 
   updateUsernameState = (event) => {
@@ -29,9 +31,22 @@ class App extends Component {
     });
   };
 
+  handleInputField = (event) => {
+    console.log("Value 1")
+  };
+
+  displayLengthOfEnteredString = () => {
+    console.log("Value 2")
+  };
+
   render() {
     return (
       <div>
+        <input type="text" onchange={() => this.handleInputField}></input>
+        <p>{this.state.enteredValue}</p>
+        <EnteredValueValidation
+          acceptableLength={10}
+          typedText= "Hello boy"/>
         <UserInput
           changeUsername={this.updateUsernameState.bind(this)}
           changeAge={this.updateUserAge.bind(this)}

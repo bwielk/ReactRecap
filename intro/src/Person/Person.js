@@ -10,7 +10,10 @@ const person = (props) => {
           <p onClick={props.click}>My name is {props.name}</p>
           <p>How are you doing?</p>
           <p>My best friend's name is {array[Math.floor(Math.random()*3)]} and I am {props.age}</p>
-          <input type="text" onChange={props.changeName}/>
+          <label for='change-name'>New name</label>
+          <input id='change-name' type="text" onChange={props.changeName}/>
+          <label for='change-age'>New age</label>
+          <input id='change-age' type="text" onChange={props.changeAge}/>
     </div>
   );
 };
