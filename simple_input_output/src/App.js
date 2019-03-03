@@ -4,6 +4,7 @@ import './App.css';
 import UserOutput from './components/UserOutput.js';
 import UserInput from './components/UserInput.js';
 import EnteredValueValidation from './components/EnteredValueValdidation.js';
+import CharComponent from './components/CharComponent.js';
 
 class App extends Component {
   state = {
@@ -35,11 +36,20 @@ class App extends Component {
     this.setState({enteredValue: event.target.value})
   };
 
-  displayLengthOfEnteredString = () => {
-    console.log("Value 2")
-  };
-
   render() {
+    let enteredValueWithoutNonAlphaNums = this.state.enteredValue.replace(/[^A-Za-z0-9]/g, '')
+    let listOfChars = enteredValueWithoutNonAlphaNums.split('')
+
+    let characters = (
+        <div>
+          {listOfChars.map((char, index) => {
+            return <CharComponent
+              value={char}
+              key={index}/>
+          })}
+      </div>
+    );
+
     return (
       <div>
         <input type="text" onChange={(event) => this.handleInputField(event)}></input>
@@ -47,6 +57,7 @@ class App extends Component {
           maximumLength={20}
           minimalLength={10}
           typedText={this.state.enteredValue}/>
+        {characters}
         <UserInput
           changeUsername={this.updateUsernameState.bind(this)}
           changeAge={this.updateUserAge.bind(this)}
