@@ -26,6 +26,18 @@ class App extends Component {
     this.setState({show_persons: !doesShow});
   }
 
+  nameChangedHandler = (event, id) => {
+    const foundPersonIndex = this.state.persons_names.findIndex(p => {
+        return p.id === id
+    })
+    const person ={...this.state.persons_names[foundPersonIndex]}
+    person.name = event.target.value
+
+    const persons = [...this.state.persons_names]
+    persons[foundPersonIndex] = person
+    this.setState({persons_names: persons})
+  }
+
   render() {
 
     const style = {
@@ -36,6 +48,23 @@ class App extends Component {
       cursor: 'pointer'
     }
 
+    let persons = null
+
+    if (this.state.show_persons === true){
+      persons = (
+        <div>
+          {this.state.persons_names.map((person, index) => {
+            return <Person
+              name={person.name}
+              age={person.age}
+              click={() => this.deletePersonHandler(index)}
+              key={person.id}
+              changeName={(event) => this.nameChangedHandler(event, person.id)}/>
+          })}
+      </div>
+    )
+  }
+
     return (
       <div className="App">
         <h1>Welcome to the app</h1>
@@ -44,16 +73,7 @@ class App extends Component {
             style={style}>
             Switch name
           </button>
-          {this.state.show_persons === true ?
-          <div>
-            {this.state.persons_names.map((person, index) => {
-              return <Person
-                name={person.name}
-                age={person.age}
-                click={() => this.deletePersonHandler(index)}
-                key={person.id}/>
-            })}
-          </div> : null }
+          {persons}
       </div>
     )
   }
