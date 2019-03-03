@@ -6,17 +6,17 @@ const enteredValueValidation = (props) => {
 
   const lengthOfEnteredText = props.typedText.length
 
-  if(lengthOfEnteredText > props.acceptableLength){
+  if(lengthOfEnteredText > props.maximumLength){
     result = (
-      <div>
-          <p>The entered text is too long</p>
-      </div>
+        <p>The entered text is too long - length {lengthOfEnteredText}</p>
+    )}
+  else if(lengthOfEnteredText < props.minimalLength){
+    result = (
+        <p>The entered text is too short - length {lengthOfEnteredText}</p>
     )}
   else{
     result = (
-      <div>
-          <p>{props.typedText}</p>
-      </div>
+        <p>{props.typedText}</p>
   )}
 
   return (

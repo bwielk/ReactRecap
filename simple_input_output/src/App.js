@@ -10,7 +10,7 @@ class App extends Component {
     username: "TestUser122",
     age: 0,
     email: '',
-    enteredValue: "Sample value of the paragraph"
+    enteredValue: "Sample value"
   };
 
   updateUsernameState = (event) => {
@@ -32,7 +32,7 @@ class App extends Component {
   };
 
   handleInputField = (event) => {
-    console.log("Value 1")
+    this.setState({enteredValue: event.target.value})
   };
 
   displayLengthOfEnteredString = () => {
@@ -42,11 +42,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <input type="text" onchange={() => this.handleInputField}></input>
-        <p>{this.state.enteredValue}</p>
+        <input type="text" onChange={(event) => this.handleInputField(event)}></input>
         <EnteredValueValidation
-          acceptableLength={10}
-          typedText= "Hello boy"/>
+          maximumLength={20}
+          minimalLength={10}
+          typedText={this.state.enteredValue}/>
         <UserInput
           changeUsername={this.updateUsernameState.bind(this)}
           changeAge={this.updateUserAge.bind(this)}
