@@ -11,7 +11,7 @@ class App extends Component {
     username: "TestUser122",
     age: 0,
     email: '',
-    enteredValue: "Sample value"
+    enteredValue: []
   };
 
   updateUsernameState = (event) => {
@@ -33,19 +33,26 @@ class App extends Component {
   };
 
   handleInputField = (event) => {
-    this.setState({enteredValue: event.target.value})
+    let enteredValue = event.target.value
+    let listOfChars = enteredValue.replace(/[^A-Za-z0-9]/g, '').split('')
+    this.setState({enteredValue: listOfChars})
+  };
+
+  deleteCharacter = (index) => {
+    const copyOfCharacterList = [...this.state.enteredValue]
+    copyOfCharacterList.splice(index, 1)
+    this.setState({enteredValue: copyOfCharacterList})
   };
 
   render() {
-    let enteredValueWithoutNonAlphaNums = this.state.enteredValue.replace(/[^A-Za-z0-9]/g, '')
-    let listOfChars = enteredValueWithoutNonAlphaNums.split('')
 
     let characters = (
         <div>
-          {listOfChars.map((char, index) => {
+          {this.state.enteredValue.map((char, index) => {
             return <CharComponent
               value={char}
-              key={index}/>
+              key={index}
+              click={() => this.deleteCharacter(index)}/>
           })}
       </div>
     );
