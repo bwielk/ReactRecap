@@ -19,6 +19,24 @@
   color: white;
 }
 
+.red {
+  color: red;
+  margin: auto;
+}
+
+.bold {
+  font-weight: bold;
+  margin: auto;
+}
+
+.background {
+  background-color: pink;
+  padding: 10px;
+  width: 100px;
+  align-items: center;
+  margin: auto;
+}
+
 .App-link {
   color: #61dafb;
 }

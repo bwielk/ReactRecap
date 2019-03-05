@@ -53,10 +53,11 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundColour: 'ivory',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
-      border: '10px solid grey',
-      padding: '5px',
+      border: '5px solid grey',
+      padding: '1px',
       cursor: 'pointer'
     }
 
@@ -75,12 +76,26 @@ class App extends Component {
               changeAge={(event) => this.ageChangeHandler(event, person.id)}/>
           })}
       </div>
-    )
+    );
+    style.backgroundColor = 'red'
+  }
+
+  let classes = []
+  //let classes = ['red', 'bold', 'background'].join(' ')
+  if(this.state.persons_names.length <= 2){
+    classes.push('red')
+  }
+  if(this.state.persons_names.length <= 1){
+    classes.push('bold')
+  }
+  if(this.state.persons_names.length ==0){
+    classes.push('background')
   }
 
     return (
       <div className="App">
         <h1>Welcome to the app</h1>
+        <p className={classes.join(' ')}>This is working</p>
           <button
             onClick={this.togglePersonsHandler.bind(this)}
             style={style}>
